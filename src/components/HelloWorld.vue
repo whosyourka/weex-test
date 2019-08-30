@@ -16,7 +16,7 @@
     <!-- <div>
       <text>{{testlength}}</text>
     </div> -->
-    <div v-for="(testmsg,testindex) in test" :key="testindex">
+    <div  v-for="(testmsg,testindex) in test" :key="testindex">
       <div :ref="'itemContent'" :style="{'flex-direction': 'row','top':'0'}">
         <div>
           <div
@@ -93,13 +93,15 @@
 /* eslint-disable */
 const dom = weex.requireModule("dom") || {};
 const modal = weex.requireModule("modal");
-const orderMsgHandler = new BroadcastChannel("Avengers");
 const toast = message => {
   modal.toast({
     message,
     duration: 1
   });
 };
+
+const orderMsgHandler = new BroadcastChannel("orderMsgHandler");
+
 export default {
   name: "HelloWorld",
   data() {
@@ -265,7 +267,7 @@ export default {
       this.isTouchIndex = 0;
     },
     addItem(name) {
-      toast("您购买了" + name);
+      // toast("您购买了" + name);
       orderMsgHandler.postMessage(name);
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="tabbar">
     <div :style="{ left: activeTab * 150 + 'px'}" class="tab active"></div>
-    <div :key="i" class="tab" v-for="(tab, i) in tabs" @click="tabitemclick(i)" >
+    <div :key="index" class="tab" v-for="(tab, index) in tabs" @click="tabitemclick(index)" >
       <image :src="tab.icon" class="icon"></image>
       <text class="title">{{tab.title}}</text>
     </div>
@@ -9,6 +9,15 @@
 </template>
 
 <script>
+const { router } = require("../router");
+const modal = weex.requireModule("modal");
+const toast = message => {
+  modal.toast({
+    message,
+    duration: 1
+  });
+};
+
 export default {
   data () {
     return {
@@ -16,23 +25,28 @@ export default {
       tabs: [
         {
           title: '首页',
-          icon: 'https://static.easyicon.net/preview/122/1225464.gif'
+          icon: 'https://static.easyicon.net/preview/122/1225464.gif',
+          href: 'home'
         },
         {
           title: '菜单',
-          icon: 'https://static.easyicon.net/preview/123/1232005.gif'
+          icon: 'https://static.easyicon.net/preview/123/1232005.gif',
+          href: 'HelloWorld'
         },
         {
           title: '订单',
-          icon: 'https://static.easyicon.net/preview/120/1200293.gif'
+          icon: 'https://static.easyicon.net/preview/120/1200293.gif',
+          href: 'HelloWorld'
         },
         {
           title: '购物车',
-          icon: 'https://static.easyicon.net/preview/122/1229112.gif'
+          icon: 'https://static.easyicon.net/preview/122/1229112.gif',
+          href: 'home'
         },
         {
           title: '我的',
-          icon: 'https://static.easyicon.net/preview/113/1138149.gif'
+          icon: 'https://static.easyicon.net/preview/113/1138149.gif',
+          href: 'home'
         }
       ]
     }
@@ -51,6 +65,12 @@ export default {
       console.log(`onitemclick, value: ${this.activeTab}`)
       console.log(`onitemclick, value: ${event}`)
       this.$emit('childByValue', this.event)
+      let name = this.tabs[event].href;
+      // if (name != ''){
+       toast(name)
+       router.push(name);
+        
+      // }
     }
   },
   computed: {

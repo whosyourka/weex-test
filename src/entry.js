@@ -5,6 +5,7 @@ const { router } = require('./router');
 // const { vuex } = require('./vuex');
 const App = require('@/index.vue');
 
+
 /* eslint-disable no-new */
 new Vue(
         Vue.util.extend(

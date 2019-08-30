@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <!-- <div> -->
+   
     <list class="list">
-      <refresh
+      <!-- <refresh
         class="refresh"
         @refresh="onrefresh"
         @pullingdown="onpullingdown"
@@ -9,7 +10,7 @@
       >
         <text class="indicator-text">Refreshing...</text>
         <loading-indicator class="indicator"></loading-indicator>
-      </refresh>
+      </refresh> -->
       <cell v-for="(item,i) in items" append="tree" :index="i" :key="i" class="row">
         <div>
           <image class="tophrline" />
@@ -35,10 +36,30 @@
         </div>
       </cell>
     </list>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
+const modal = weex.requireModule("modal");
+const toast = message => {
+  modal.toast({
+    message,
+    duration: 1
+  });
+};
+const orderMsgHandler = new BroadcastChannel("Avengers");
+orderMsgHandler.onmessage = function(params) {
+  toast("s1")
+  // this.items.push({
+  //         pickWay: "自提",
+  //         address: "天地软件远 (NO.1708)",
+  //         orderStatus: "已完成",
+  //         productName: params.data,
+  //         productNum: "2",
+  //         price: "8.86",
+  //         orderTime: "2019-09-12 16:30"
+  //       })
+}
 export default {
   data() {
     return {
@@ -79,7 +100,17 @@ export default {
           productNum: "2",
           price: "8.86",
           orderTime: "2019-09-12 16:30"
+        },
+        {
+          pickWay: "自提",
+          address: "天地软件远 (NO.1708)",
+          orderStatus: "已完成",
+          productName: "摩卡",
+          productNum: "2",
+          price: "8.86",
+          orderTime: "2019-09-12 16:30"
         }
+        
       ]
     };
   },
