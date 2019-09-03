@@ -5,8 +5,7 @@
     @touchend="scrollFirstUp"
     @touchmove="scrollFirstMove"
   >
-    
-    <div v-for="(testmsg,testindex) in test" :key="testindex" >
+    <div v-for="(testmsg,testindex) in test" :key="testindex">
       <div :ref="'itemHead'">
         <image
           style="height:100wx;"
@@ -14,11 +13,10 @@
         />
       </div>
     </div>
-    <div>
-      <text>haha:{{stories}}</text>
-    </div>
-    <a href=""></a>
-    <div  v-for="(testmsg,testindex) in test" :key="testindex">
+    <!-- <div>
+      <text>haha11111333312123:{{stories}}</text>
+    </div> -->
+    <div v-for="(testmsg,testindex) in test" :key="testindex">
       <div :ref="'itemContent'" :style="{'flex-direction': 'row','top':'0'}">
         <div>
           <div
@@ -51,14 +49,16 @@
             shouldStopPropagationInitResult="false"
           >
             <template v-for="(item, index) in list">
-              <header :ref="'item'+index" :key="index" >
+              <header :ref="'item'+index" :key="index">
                 <div
                   style="flex-direction:row;background-color:white;
                   align-items: center;padding-top:10wx;padding-bottom:10wx"
                 >
                   <text>{{item.name}}</text>
-                  <text style="background-color:#dddddd;
-                  height:1wx;width:1000wx;margin-left:4wx;"></text>
+                  <text
+                    style="background-color:#dddddd;
+                  height:1wx;width:1000wx;margin-left:4wx;"
+                  ></text>
                 </div>
               </header>
               <cell :key="index">
@@ -95,20 +95,17 @@
 /* eslint-disable */
 const dom = weex.requireModule("dom") || {};
 const modal = weex.requireModule("modal");
-modal. lis
 const toast = message => {
   modal.toast({
     message,
     duration: 1
   });
 };
-const orderMsgHandler = new BroadcastChannel("orderMsgHandler");
 
 export default {
-  name: "HelloWorld",
+  name: "Menu",
   data() {
     return {
-
       test: [1],
       firstEnd: 0,
 
@@ -215,12 +212,8 @@ export default {
         }
       ]
     };
-  },
-   computed: {
-    stories () {
-      return this.$store.state.count 
-    }
-  },
+  }
+  ,
   methods: {
     scrollFirstEnd(e) {
       this.firstEnd = -e.contentOffset.y;
@@ -259,7 +252,6 @@ export default {
       }
     },
     disonappear(e, index,cellIndex, list) {
-     
       if (
         e.direction == 'up' &&
         cellIndex == (list.length - 1) &&
