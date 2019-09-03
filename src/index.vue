@@ -8,7 +8,7 @@
       <div style="flex:1;" v-for="(item, index) in navList" :key="index" @click="goto(index)">
         <text style="text-align:center">{{item.name}}</text>
       </div>
-    </div>-->
+    </div> -->
     <div class="tabbar">
       <div :style="{ left: activeTab * 150 + 'px'}" class="tab active"></div>
       <div :key="index" class="tab" v-for="(tab, index) in tabs" @click="tabitemclick(index)">

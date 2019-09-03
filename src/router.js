@@ -1,34 +1,24 @@
 /* global Vue */
 /* eslint-disable */
 import Router from 'vue-router';
-import HelloWorld from '@/components/HelloWorld';
+import Menu from '@/components/Menu';
 import OrderItem from '@/components/OrederItem';
-import OrderList from '@/components/OrderList';
-import home from '@/index1';
 
 Vue.use(Router);
 
 export const router = new Router({
     routes: [{
             path: '/',
-            redirect: '/HelloWorld'
+            redirect: '/Menu'
         },
         {
-            path: '/HelloWorld',
-            component: HelloWorld,
-        },
-        {
-            path: '/home',
-            component: home,
+            path: '/Menu',
+            component: Menu,
         },
         {
             path: '/OrderItem',
             component: OrderItem,
         },
 
-        {
-            path: '/OrderList',
-            component: OrderList,
-        },
     ],
 });
