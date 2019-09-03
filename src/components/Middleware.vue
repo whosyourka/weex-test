@@ -15,8 +15,8 @@
       <div class="middle_center">
         <div class="middle_item">
           <div class="middle_item_coupon">
-           <text class="item_title">{{item.title}}</text>
-           <text class="item_title_end" v-show="i==1">买二赠一</text>
+            <text class="item_title">{{item.title}}</text>
+            <text class="item_title_end" v-show="i==1">买二赠一</text>
           </div>
           <text class="item_title_es">{{item.title_es}}</text>
         </div>
@@ -33,11 +33,13 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   data() {
     return {
       activeItem: 0,
-      icon2: "https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg",
+      icon2:
+        "https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg",
       items: [
         {
           title: "现在下单",
@@ -184,9 +186,8 @@ export default {
 .item_title_end {
   font-size: 20px;
   margin-left: 10px;
-  background-color:tomato;
+  background-color: tomato;
   height: 40px;
-  color:white;
+  color: white;
 }
-
 </style>

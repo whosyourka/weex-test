@@ -1,8 +1,9 @@
 <template>
-  <div style="flex-direction:column">
+  <div style="flex-direction:column" >
     <div style="flex:1">
       <router-view />
     </div>
+    
     <!-- <div style="flex-direction:row;margin-top:10wx;margin-bottom:10wx">
       <div style="flex:1;" v-for="(item, index) in navList" :key="index" @click="goto(index)">
         <text style="text-align:center">{{item.name}}</text>
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import TableBar from "@/components/TableBar";
 const { router } = require("./router");
 const dom = weex.requireModule("dom") || {};

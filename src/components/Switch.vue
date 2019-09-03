@@ -22,24 +22,25 @@
   </div>
 </template>
 <script>
+/* eslint-disable */
 export default {
-  data () {
+  data() {
     return {
       checked: false,
       haha: true
-    }
+    };
   },
   methods: {
-    onchange (event) {
-      console.log(`onchage, value: ${event.value}`)
-      this.checked = event.value
+    onchange(event) {
+      console.log(`onchage, value: ${event.value}`);
+      this.checked = event.value;
     },
-    onswitch (event) {
-      console.log(`onchage, value: ${event.value}`)
-      this.haha = event.value
+    onswitch(event) {
+      console.log(`onchage, value: ${event.value}`);
+      this.haha = event.value;
     }
   }
-}
+};
 </script>
 <style scoped>
 .example {

@@ -1,8 +1,8 @@
 <template>
   <!-- <div> -->
-   
-    <list class="list">
-      <!-- <refresh
+
+  <list class="list">
+    <!-- <refresh
         class="refresh"
         @refresh="onrefresh"
         @pullingdown="onpullingdown"
@@ -10,36 +10,37 @@
       >
         <text class="indicator-text">Refreshing...</text>
         <loading-indicator class="indicator"></loading-indicator>
-      </refresh> -->
-      <cell v-for="(item,i) in items" append="tree" :index="i" :key="i" class="row">
-        <div>
-          <image class="tophrline" />
-          <div class="item_address">
-            <text class="take_style">{{item.pickWay}}</text>
-            <text class="take_store">{{item.address}}</text>
-            <text class="take_status">{{item.orderStatus}}</text>
-          </div>
-          <image class="hrline" />
-
-          <div class="item_address">
-            <text class="product_name">{{item.productName}}</text>
-            <text class="product_num">等共{{item.productNum}}件商品</text>
-            <text class="product_price">￥{{item.price}}</text>
-          </div>
-
-          <text class="order_time">{{item.orderTime}}</text>
-
-          <div class="again">
-            <text class="again_null"></text>
-            <text class="order_again">再来一单</text>
-          </div>
+    </refresh>-->
+    <cell v-for="(item,i) in items" append="tree" :index="i" :key="i" class="row">
+      <div>
+        <image class="tophrline" />
+        <div class="item_address">
+          <text class="take_style">{{item.pickWay}}</text>
+          <text class="take_store">{{item.address}}</text>
+          <text class="take_status">{{item.orderStatus}}</text>
         </div>
-      </cell>
-    </list>
+        <image class="hrline" />
+
+        <div class="item_address">
+          <text class="product_name">{{item.productName}}</text>
+          <text class="product_num">等共{{item.productNum}}件商品</text>
+          <text class="product_price">￥{{item.price}}</text>
+        </div>
+
+        <text class="order_time">{{item.orderTime}}</text>
+
+        <div class="again">
+          <text class="again_null"></text>
+          <text class="order_again">再来一单</text>
+        </div>
+      </div>
+    </cell>
+  </list>
   <!-- </div> -->
 </template>
 
 <script>
+/* eslint-disable */
 const modal = weex.requireModule("modal");
 const toast = message => {
   modal.toast({
@@ -49,7 +50,7 @@ const toast = message => {
 };
 const orderMsgHandler = new BroadcastChannel("Avengers");
 orderMsgHandler.onmessage = function(params) {
-  toast("s1")
+  toast("s1");
   // this.items.push({
   //         pickWay: "自提",
   //         address: "天地软件远 (NO.1708)",
@@ -59,7 +60,7 @@ orderMsgHandler.onmessage = function(params) {
   //         price: "8.86",
   //         orderTime: "2019-09-12 16:30"
   //       })
-}
+};
 export default {
   data() {
     return {
@@ -110,7 +111,6 @@ export default {
           price: "8.86",
           orderTime: "2019-09-12 16:30"
         }
-        
       ]
     };
   },

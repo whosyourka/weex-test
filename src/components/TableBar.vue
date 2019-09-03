@@ -1,14 +1,15 @@
 <template>
   <div class="tabbar">
     <div :style="{ left: activeTab * 150 + 'px'}" class="tab active"></div>
-    <div :key="index" class="tab" v-for="(tab, index) in tabs" @click="tabitemclick(index)" >
-      <image :src="tab.icon" class="icon"></image>
+    <div :key="index" class="tab" v-for="(tab, index) in tabs" @click="tabitemclick(index)">
+      <image :src="tab.icon" class="icon" />
       <text class="title">{{tab.title}}</text>
     </div>
   </div>
 </template>
 
 <script>
+/* eslint-disable */
 const { router } = require("../router");
 const modal = weex.requireModule("modal");
 const toast = message => {
@@ -19,37 +20,37 @@ const toast = message => {
 };
 
 export default {
-  data () {
+  data() {
     return {
       activeTab: 0,
       tabs: [
         {
-          title: '首页',
-          icon: 'https://static.easyicon.net/preview/122/1225464.gif',
-          href: 'home'
+          title: "首页",
+          icon: "https://static.easyicon.net/preview/122/1225464.gif",
+          href: "home"
         },
         {
-          title: '菜单',
-          icon: 'https://static.easyicon.net/preview/123/1232005.gif',
-          href: 'HelloWorld'
+          title: "菜单",
+          icon: "https://static.easyicon.net/preview/123/1232005.gif",
+          href: "HelloWorld"
         },
         {
-          title: '订单',
-          icon: 'https://static.easyicon.net/preview/120/1200293.gif',
-          href: 'HelloWorld'
+          title: "订单",
+          icon: "https://static.easyicon.net/preview/120/1200293.gif",
+          href: "HelloWorld"
         },
         {
-          title: '购物车',
-          icon: 'https://static.easyicon.net/preview/122/1229112.gif',
-          href: 'home'
+          title: "购物车",
+          icon: "https://static.easyicon.net/preview/122/1229112.gif",
+          href: "home"
         },
         {
-          title: '我的',
-          icon: 'https://static.easyicon.net/preview/113/1138149.gif',
-          href: 'home'
+          title: "我的",
+          icon: "https://static.easyicon.net/preview/113/1138149.gif",
+          href: "home"
         }
       ]
-    }
+    };
   },
   methods: {
     onchange(event) {
@@ -61,24 +62,24 @@ export default {
       this.haha = event.value;
     },
     tabitemclick(event) {
-      this.activeTab = event
-      console.log(`onitemclick, value: ${this.activeTab}`)
-      console.log(`onitemclick, value: ${event}`)
-      this.$emit('childByValue', this.event)
+      this.activeTab = event;
+      console.log(`onitemclick, value: ${this.activeTab}`);
+      console.log(`onitemclick, value: ${event}`);
+      this.$emit("childByValue", this.event);
       let name = this.tabs[event].href;
       // if (name != ''){
-       toast(name)
-       router.push(name);
-        
+      toast(name);
+      router.push(name);
+
       // }
     }
   },
   computed: {
-    panels () {
-      return this.tabs.map(tab => ({ content: tab.title }))
+    panels() {
+      return this.tabs.map(tab => ({ content: tab.title }));
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -109,7 +110,7 @@ export default {
 }
 .title {
   font-size: 28px;
-  color:black;
+  color: black;
   margin-top: 10px;
 }
 </style>
