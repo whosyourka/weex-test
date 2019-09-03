@@ -22,6 +22,7 @@
 <script>
 /* eslint-disable */
 import TableBar from "@/components/TableBar";
+import Bus from './eventBus.js'
 const { router } = require("./router");
 const dom = weex.requireModule("dom") || {};
 const modal = weex.requireModule("modal");
@@ -32,6 +33,10 @@ const toast = message => {
     duration: 1
   });
 };
+Bus.$off('changeIndex');
+Bus.$on('changeIndex', msg => {
+    router.push(msg)
+});
 
 export default {
   name: "App",
@@ -45,12 +50,12 @@ export default {
         {
           title: "首页",
           icon: "https://static.easyicon.net/preview/122/1225464.gif",
-          href: "home"
+          href: "HomePage"
         },
         {
           title: "菜单",
           icon: "https://static.easyicon.net/preview/123/1232005.gif",
-          href: "HelloWorld"
+          href: "Menu"
         },
         {
           title: "订单",
@@ -78,6 +83,7 @@ export default {
           name: "下单",
           href: "HelloWorld"
         }
+        
       ]
     };
   },

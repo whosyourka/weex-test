@@ -10,19 +10,17 @@
       </div>
     </div>
 
-    <div :key="i" class="item" v-for="(item, i) in items" @click="onitemclick(i)">
+    <div :key="i" class="item" v-for="(item, i) in items" @click="onitemclick(i,$event)">
       <image class="hrline" />
       <div class="middle_center">
         <div class="middle_item">
           <div class="middle_item_coupon">
             <text class="item_title">{{item.title}}</text>
-            <text class="item_title_end" v-show="i==1">买二赠一</text>
+            <text class="item_title_end" v-if="i==1">买二赠一</text>
           </div>
           <text class="item_title_es">{{item.title_es}}</text>
         </div>
-        <div class="local_switch">
-          <image :src="item.icon" class="icon" />
-        </div>
+        <image :src="item.icon" class="icon" />
       </div>
     </div>
 
@@ -34,6 +32,15 @@
 
 <script>
 /* eslint-disable */
+import Bus from "../eventBus.js";
+const modal = weex.requireModule("modal");
+const toast = message => {
+  modal.toast({
+    message,
+    duration: 1
+  });
+};
+const { router } = require("../router");
 export default {
   data() {
     return {
@@ -74,8 +81,11 @@ export default {
       console.log(`onchage, value: ${event.value}`);
       this.haha = event.value;
     },
-    onitemclick(event) {
-      console.log(`onitemclick, value: ${event}`);
+    onitemclick(i, event) {
+
+      if (this.items[i].title == "咖啡钱包") {
+        Bus.$emit("changeIndex", "Menu");
+      }
     }
   }
 };
@@ -106,10 +116,10 @@ export default {
   width: 145px;
   text-align: right;
 }
+
 .icon {
-  width: 105px;
-  height: 65px;
-  margin-left: 40px;
+  width: 35wx;
+  height: 35wx;
 }
 
 .local_name {
@@ -123,7 +133,7 @@ export default {
 }
 
 .middle_center {
-  width: 670px;
+  flex: 1;
   height: 135px;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -144,6 +154,7 @@ export default {
 }
 
 .middle_item_coupon {
+  align-items: center;
   width: 300px;
   flex-direction: row;
   display: flex;
@@ -184,10 +195,10 @@ export default {
 }
 
 .item_title_end {
+  text-align: center;
   font-size: 20px;
   margin-left: 10px;
   background-color: tomato;
-  height: 40px;
   color: white;
 }
 </style>
