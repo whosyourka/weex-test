@@ -21,7 +21,6 @@
 
 <script>
 /* eslint-disable */
-const { router } = require("../router");
 import TableBar from "./TableBar";
 import IndicatorBar from "./IndicatorBar";
 import Middleware from "./Middleware";

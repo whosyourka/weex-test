@@ -25,7 +25,7 @@
     </div>
 
     <div class="middle_bottom">
-      <image class="bottom_image" :src="icon2" resize="cover" @click="onswitch" />
+      <image class="bottom_image" :src="icon2" resize="cover"  />
     </div>
   </div>
 </template>
@@ -40,11 +40,9 @@ const toast = message => {
     duration: 1
   });
 };
-const { router } = require("../router");
 export default {
   data() {
     return {
-      activeItem: 0,
       icon2:
         "https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg",
       items: [
@@ -73,16 +71,7 @@ export default {
   },
 
   methods: {
-    onchange(event) {
-      console.log(`onchage, value: ${event.value}`);
-      this.checked = event.value;
-    },
-    onswitch(event) {
-      console.log(`onchage, value: ${event.value}`);
-      this.haha = event.value;
-    },
     onitemclick(i, event) {
-
       if (this.items[i].title == "咖啡钱包") {
         Bus.$emit("changeIndex", "Menu");
       }

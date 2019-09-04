@@ -1,14 +1,13 @@
 <template>
-  <div style="flex-direction:column" >
+  <div style="flex-direction:column">
     <div style="flex:1">
       <router-view />
     </div>
-    
     <!-- <div style="flex-direction:row;margin-top:10wx;margin-bottom:10wx">
       <div style="flex:1;" v-for="(item, index) in navList" :key="index" @click="goto(index)">
         <text style="text-align:center">{{item.name}}</text>
       </div>
-    </div> -->
+    </div>-->
     <div class="tabbar">
       <div :style="{ left: activeTab * 150 + 'px'}" class="tab active"></div>
       <div :key="index" class="tab" v-for="(tab, index) in tabs" @click="tabitemclick(index)">
@@ -19,10 +18,10 @@
   </div>
 </template>
 
-<script>
+<script >
 /* eslint-disable */
 import TableBar from "@/components/TableBar";
-import Bus from './eventBus.js'
+import Bus from "./eventBus.js";
 const { router } = require("./router");
 const dom = weex.requireModule("dom") || {};
 const modal = weex.requireModule("modal");
@@ -33,9 +32,9 @@ const toast = message => {
     duration: 1
   });
 };
-Bus.$off('changeIndex');
-Bus.$on('changeIndex', msg => {
-    router.push(msg)
+Bus.$off("changeIndex");
+Bus.$on("changeIndex", msg => {
+  router.push(msg);
 });
 
 export default {
@@ -83,7 +82,6 @@ export default {
           name: "下单",
           href: "HelloWorld"
         }
-        
       ]
     };
   },
@@ -112,16 +110,19 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .logo {
   width: 424px;
   height: 200px;
 }
+
 .greeting {
   text-align: center;
   margin-top: 70px;
   font-size: 50px;
   color: #41b883;
 }
+
 .message {
   margin: 30px;
   font-size: 32px;
@@ -131,17 +132,18 @@ export default {
 .tabbar {
   background-color: antiquewhite;
   flex-direction: row;
-
   bottom: 0px;
   left: 0px;
   right: 0px;
 }
+
 .tab {
   height: 120px;
   width: 150px;
   justify-content: center;
   align-items: center;
 }
+
 .active {
   position: absolute;
   top: 0;
@@ -149,10 +151,12 @@ export default {
   background-color: rgb(218, 59, 85);
   transition: left 0.2s ease-in-out;
 }
+
 .icon {
   width: 45px;
   height: 45px;
 }
+
 .title {
   font-size: 28px;
   color: black;

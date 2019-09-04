@@ -1,5 +1,5 @@
 /* global Vue */
-
+/* eslint-disable */
 /* weex initialized here, please do not move this line */
 const { router } = require('./router');
 // const { vuex } = require('./vuex');

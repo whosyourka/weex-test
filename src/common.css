@@ -1,0 +1,56 @@
+.wrapper {
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 424px;
+    height: 200px;
+}
+
+.greeting {
+    text-align: center;
+    margin-top: 70px;
+    font-size: 50px;
+    color: #41b883;
+}
+
+.message {
+    margin: 30px;
+    font-size: 32px;
+    color: #727272;
+}
+
+.tabbar {
+    background-color: antiquewhite;
+    flex-direction: row;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.tab {
+    height: 120px;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+}
+
+.active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(218, 59, 85);
+    transition: left 0.2s ease-in-out;
+}
+
+.icon {
+    width: 45px;
+    height: 45px;
+}
+
+.title {
+    font-size: 28px;
+    color: black;
+    margin-top: 10px;
+}
