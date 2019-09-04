@@ -13,9 +13,6 @@
         />
       </div>
     </div>
-    <!-- <div>
-      <text>haha11111333312123:{{stories}}</text>
-    </div> -->
     <div v-for="(testmsg,testindex) in test" :key="testindex">
       <div :ref="'itemContent'" :style="{'flex-direction': 'row','top':'0'}">
         <div>
@@ -72,7 +69,7 @@
                     @appear="(e) => {onappear(e, index,cellindex,item.list);}"
                     @disappear="(e) => {disonappear(e, index, cellIndex , item.list);}"
                   >
-                    <image src="http://pic33.nipic.com/20131007/13639685_123501617185_2.jpg" />
+                    <image />
                   </div>
                   <div style="flex:1;margin-left:10wx;;flex-direction:column">
                     <text style="font-size:13wx">{{cellItem.name}}</text>
@@ -93,7 +90,9 @@
 
 <script>
 /* eslint-disable */
+import Bus from "../eventBus.js";
 const dom = weex.requireModule("dom") || {};
+const navigator = weex.requireModule("navigator");
 const modal = weex.requireModule("modal");
 const toast = message => {
   modal.toast({
@@ -212,8 +211,7 @@ export default {
         }
       ]
     };
-  }
-  ,
+  },
   methods: {
     scrollFirstEnd(e) {
       this.firstEnd = -e.contentOffset.y;
@@ -246,15 +244,19 @@ export default {
       dom.scrollToElement(el, {});
       this.currentIndex = index;
     },
-    onappear(e, index,cellIndex, list) {
-      if ( e.direction == 'down' && index < this.currentIndex && this.isTouchIndex == 0) {
+    onappear(e, index, cellIndex, list) {
+      if (
+        e.direction == "down" &&
+        index < this.currentIndex &&
+        this.isTouchIndex == 0
+      ) {
         this.currentIndex = index;
       }
     },
-    disonappear(e, index,cellIndex, list) {
+    disonappear(e, index, cellIndex, list) {
       if (
-        e.direction == 'up' &&
-        cellIndex == (list.length - 1) &&
+        e.direction == "up" &&
+        cellIndex == list.length - 1 &&
         index == this.currentIndex &&
         this.isTouchIndex == 0
       ) {
@@ -265,13 +267,18 @@ export default {
       this.isTouchIndex = 0;
     },
     addItem(name) {
-      // toast("您购买了" + name);
-      orderMsgHandler.postMessage(name);
+      toast("您进入了" + name + "的详情页面");
+      // navigator.push({
+      //   url: "http://10.177.38.87:8081/dist/components/MenuItem.js",
+      //   animated: "false"
+      // });
+      Bus.$emit("changeIndex", "MenuItem");
     }
   }
 };
 </script>
 <style scoped>
+
 .panel {
   height: 100px;
   margin-left: 75px;

@@ -15,33 +15,24 @@
     <Middleware />
   </scroller>
   <!-- </div> -->
-  <!-- <OrderPage v-if="showorderpage"/> -->
-  <!--底部tablebar-->
 </template>
 
 <script>
 /* eslint-disable */
-import TableBar from "./TableBar";
 import IndicatorBar from "./IndicatorBar";
 import Middleware from "./Middleware";
-import OrderPage from "./OrderPage";
 
 const modal = weex.requireModule("modal");
 
 export default {
-  name: "HotmPage",
+  name: "HomePage",
   components: {
-    TableBar,
     IndicatorBar,
-    Middleware,
-    OrderPage
+    Middleware
   },
   data() {
     return {
-      refreshing: false,
-      showorderpage: false,
-      indexitem: 1,
-      logo: "https://gw.alicdn.com/tfs/TB1yopEdgoQMeJjy1XaXXcSsFXa-640-302.png"
+      refreshing: true,
     };
   },
 
@@ -58,15 +49,6 @@ export default {
       console.log("pullingDistance: " + event.pullingDistance);
       console.log("viewHeight: " + event.viewHeight);
       console.log("type: " + event.type);
-    },
-    childByValue: function(childValue) {
-      this.indexitem++;
-      console.log("childByValue: " + this.indexitem);
-      if (this.indexitem % 2 == 0) {
-        this.showorderpage = true;
-      } else {
-        this.showorderpage = false;
-      }
     }
   }
 };

@@ -10,9 +10,9 @@
       </div>
     </div>
 
-    <div :key="i" class="item" v-for="(item, i) in items" @click="onitemclick(i,$event)">
+    <div :key="i" class="item" v-for="(item, i) in items">
       <image class="hrline" />
-      <div class="middle_center">
+      <div class="middle_center" >
         <div class="middle_item">
           <div class="middle_item_coupon">
             <text class="item_title">{{item.title}}</text>
@@ -20,7 +20,7 @@
           </div>
           <text class="item_title_es">{{item.title_es}}</text>
         </div>
-        <image :src="item.icon" class="icon" />
+        <image :src="item.icon" class="icon"  @click="onitemclick(i,$event)"/>
       </div>
     </div>
 

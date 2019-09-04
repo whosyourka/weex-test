@@ -3,14 +3,15 @@
     <div style="flex:1">
       <router-view />
     </div>
-    <!-- <div style="flex-direction:row;margin-top:10wx;margin-bottom:10wx">
-      <div style="flex:1;" v-for="(item, index) in navList" :key="index" @click="goto(index)">
-        <text style="text-align:center">{{item.name}}</text>
-      </div>
-    </div>-->
+    
     <div class="tabbar">
-      <div :style="{ left: activeTab * 150 + 'px'}" class="tab active"></div>
-      <div :key="index" class="tab" v-for="(tab, index) in tabs" @click="tabitemclick(index)">
+      <div
+        :key="index"
+        class="tab"
+        :style="{ 'background-color': index == activeTab ? 'blue':'red'  }"
+        v-for="(tab, index) in tabs"
+        @click="tabitemclick(index)"
+      >
         <image :src="tab.icon" class="icon" />
         <text class="title">{{tab.title}}</text>
       </div>
@@ -20,27 +21,26 @@
 
 <script >
 /* eslint-disable */
-import TableBar from "@/components/TableBar";
-import Bus from "./eventBus.js";
 const { router } = require("./router");
-const dom = weex.requireModule("dom") || {};
-const modal = weex.requireModule("modal");
 
+const modal = weex.requireModule("modal");
 const toast = message => {
   modal.toast({
     message,
     duration: 1
   });
 };
-Bus.$off("changeIndex");
-Bus.$on("changeIndex", msg => {
-  router.push(msg);
-});
+
+import Bus from "./eventBus.js";
+const navigator = weex.requireModule("navigator");
 
 export default {
-  name: "App",
-  components: {
-    TableBar
+  name: "index",
+  created: function() {
+    Bus.$on("changeIndex", msg => {
+      router.push(msg);
+      this.activeTab = 1;
+    });
   },
   data() {
     return {
@@ -71,41 +71,23 @@ export default {
           icon: "https://static.easyicon.net/preview/113/1138149.gif",
           href: ""
         }
-      ],
-      logo: "https://gw.alicdn.com/tfs/TB1yopEdgoQMeJjy1XaXXcSsFXa-640-302.png",
-      navList: [
-        {
-          name: "首页",
-          href: "home"
-        },
-        {
-          name: "下单",
-          href: "HelloWorld"
-        }
       ]
     };
   },
   methods: {
-    goto: function(index) {
-      let name = this.navList[index].href;
-      router.push(name);
-    },
-    tabitemclick(event) {
-      this.activeTab = event;
-      console.log(`onitemclick, value: ${this.activeTab}`);
-      console.log(`onitemclick, value: ${event}`);
-      this.$emit("childByValue", this.event);
-      let name = this.tabs[event].href;
+    tabitemclick(index) {
+      this.activeTab = index;
+      let name = this.tabs[index].href;
       if (name != "") {
         router.push(name);
       }
-      orderMsgHandler.postMessage("ss");
     }
   }
 };
 </script>
 
 <style scoped>
+
 .wrapper {
   justify-content: center;
   align-items: center;
